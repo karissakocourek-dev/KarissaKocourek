@@ -1,0 +1,312 @@
+:root {
+  --text: #f7faf9;
+  --text-muted: rgba(247, 250, 249, 0.78);
+  --accent: #5fe0d2;
+  --accent-strong: #2bb8a9;
+  --glass: rgba(10, 30, 38, 0.48);
+  --glass-strong: rgba(10, 30, 38, 0.68);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --radius: 18px;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  background-color: #0b2a33;
+  overflow-x: hidden;
+}
+
+/* Fixed background photo with a dark overlay so text stays readable.
+   A fixed pseudo-element is used instead of background-attachment: fixed,
+   which mobile Safari ignores. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(6, 22, 28, 0.25) 0%, rgba(6, 22, 28, 0.55) 55%, rgba(6, 22, 28, 0.8) 100%),
+    url('./assets/joffre-lakes.jpg') center / cover no-repeat;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--accent);
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav ul a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.nav ul a:hover,
+.nav ul a:focus-visible {
+  color: var(--text);
+}
+
+/* Hero */
+.hero {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 16px;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  margin-bottom: 0.25em;
+}
+
+.tagline {
+  font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+  color: var(--text);
+  max-width: 36ch;
+  margin-bottom: 2rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #06323a;
+  font-weight: 600;
+  text-decoration: none;
+  text-shadow: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: #8af0e5;
+  transform: translateY(-2px);
+}
+
+/* Sections */
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.section {
+  padding: clamp(24px, 5vw, 44px);
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.section h2 {
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+}
+
+.eyebrow {
+  margin-bottom: 0.4em;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+.section .lead + .grid {
+  margin-top: 1.5rem;
+}
+
+/* Cards */
+.card {
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  color: var(--text-muted);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
+.card-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.country {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  color: var(--text);
+  font-weight: 600;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.country:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.flag {
+  width: 64px;
+  height: 43px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* Footer */
+.footer {
+  padding: 24px 16px 32px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  background: var(--glass-strong);
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer p {
+  margin: 0 0 0.3em;
+}
+
+.credit {
+  font-size: 0.8rem;
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+    padding: 10px 16px;
+    gap: 6px;
+  }
+
+  .nav ul {
+    justify-content: center;
+    gap: 4px 14px;
+  }
+
+  html {
+    scroll-padding-top: 110px;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button,
+  .country {
+    transition: none;
+  }
+}
